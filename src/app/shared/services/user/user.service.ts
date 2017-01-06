@@ -54,7 +54,7 @@ export class UserService {
   }
 
   getUsers() {
-    return this.http.get(this._apiBase + "/api/users?limit=5&desc=true", <RequestOptionsArgs> {withCredentials: true})
+    return this.http.get(this._apiBase + "/api/users?limit=30&desc=false", <RequestOptionsArgs> {withCredentials: true})
                   .map((res: Response) => res.json())
                   .catch(this.handleError);
   }

@@ -11,24 +11,12 @@ var passport              = require('passport');
 var authenticationHelpers = require('../authenticationHelpers');
 
 /**
- * Authorization route for google provider
- */
-router.get('/google',
-  passport.authenticate('google', { scope: ['email'], accessType: 'offline'}
-));
-
-/**
- * Authorization route for twitter provider
- */
-router.get('/twitter',
-  passport.authenticate('twitter'));
-
-/**
  * Authorization route for local provider
  */
 var getUserPublicController = require('../../controllers').getUserPublic;
 router.post('/local', function(request, response, next) {
   passport.authenticate('local', function(error, user, info) {
+    console.log(111);
     if (!user) {
       response.status(401);
       response.json({"reason": "Invalid credentials"});

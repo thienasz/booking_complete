@@ -18,9 +18,6 @@ import 'rxjs/add/observable/interval';
 
 export class LoginComponent implements OnInit, OnDestroy {
   title = 'Login';
-  googleLink = '/authorize/google';
-  twitterLink = '/authorize/twitter';
-  githubLink = 'https://github.com/domfarolino/angular2-login-seed';
   registerLink = '/register';
 
   authenticatedObs: Observable<boolean>;
@@ -42,7 +39,7 @@ export class LoginComponent implements OnInit, OnDestroy {
    */
   errorDiagnostic: string;
 
-  constructor(private _userService: UserService, private _router: Router, private formBuilder: FormBuilder, @Inject('apiBase') private _apiBase: string) {
+  constructor(private userService: UserService, private router: Router, private formBuilder: FormBuilder, @Inject('apiBase') private _apiBase: string) {
 
   }
 
@@ -57,41 +54,13 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   authenticated(): Observable<boolean> {
     if (this.authenticatedObs) return this.authenticatedObs;
-    this.authenticatedObs = this._userService.authenticated()
+    this.authenticatedObs = this.userService.authenticated()
       .map(data => {return data.authenticated});
     return this.authenticatedObs;
   }
 
-  openAuthWindow(provider: string) {
-    /**
-     * Total hack until new router is used (for authentication and activation logic)
-     */
-    var newWindow = window.open(`${this._apiBase}/authorize/${provider}`, 'name', 'height=585, width=770');
-	   if (window.focus) {
-       newWindow.focus();
-     }
-
-     let source = Observable.interval(2000)
-      .map(() => {
-        this.userServiceSub = this.authenticated().subscribe(data => {
-          if (data) {
-          this._router.navigate(['/']);
-          newWindow.close();
-        }
-       })
-    })
-
-    if (this.authSub) this.authSub.unsubscribe();
-    this.authSub = source.subscribe();
-
-  }
-
-  repository() {
-    window.location.href = this.githubLink;
-  }
-
   register() {
-    this._router.navigate(['/register']);
+    this.router.navigate(['/register']);
   }
 
   onSubmit() {
@@ -100,9 +69,9 @@ export class LoginComponent implements OnInit, OnDestroy {
      */
     this.submitted = true;
     this.errorDiagnostic = null;
-
-    this._userService.login(this.form.value).subscribe(data => {
-      this._router.navigate(['/']);
+    console.log(this.form.value);
+    this.userService.login(this.form.value).subscribe(data => {
+      this.router.navigate(['/']);
     },
     error => {
       this.submitted = false;

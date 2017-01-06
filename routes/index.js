@@ -11,7 +11,7 @@ var authenticationHelpers = require('./authenticationHelpers');
 var api       =  require('./api');
 var authorize =  require('./authorize');
 
-const allowedOrigins = ['http://localhost:4200', 'https://angular2-login-seed.herokuapp.com', 'https://domfarolino.com', 'https://domfarolino.github.io'];
+const allowedOrigins = ['http://localhost:4200'];
 
 router.use(function(request, response, next) {
   var origin = request.headers.origin;
@@ -34,33 +34,17 @@ router.use('/authorize', authorize);
 /* GET home page. */
 /* Purest route */
 router.get('/', function(req, res, next) {
-  res.json({"apiRoot": true});
+    console.log(1232);
+    res.sendFile(path.join(__dirname, '/../dist/', 'index.html'));
+  // res.json({"apiRoot": true});
 });
 
 /* GET logout page. */
 router.get('/logout', authenticationHelpers.isAuthOrRedirect, function(req, res, next) {
   //res.sendFile(path.resolve('./index.html'));
   req.logout();
-  res.json({"loggedOut": req.isAuthenticated()});
+  res.json({"authenticated": req.isAuthenticated()});
 });
-
-/**
- * Define our google callback endpoint and success/failure methods
- */
-router.get('/callback/google',
-	passport.authenticate('google', {
-		successRedirect: '/',
-		failureRedirect: '/login'
-}));
-
-/**
- * Define our twitter callback endpoint and success/failure methods
- */
-router.get('/callback/twitter',
-	passport.authenticate('twitter', {
-		successRedirect: '/',
-		failureRedirect: '/login'
-}));
 
 /**
  * Anything else under root route '/'
@@ -69,9 +53,9 @@ router.get('/callback/twitter',
  * this is the index.js, and if it came before say, the route.use('/api', api), everything
  * that would call /api would be read as /*
  */
-router.get("/*", authenticationHelpers.isAuthOrRedirect, function(req, res, next) {
-  res.sendFile(path.join(__dirname, '../', 'index.html'));
-  //res.render('index');
-});
+// router.get("/*", authenticationHelpers.isAuthOrRedirect, function(req, res, next) {
+//   res.sendFile(path.join(__dirname, '../', 'index.html'));
+//   //res.render('index');
+// });
 
 module.exports = router;

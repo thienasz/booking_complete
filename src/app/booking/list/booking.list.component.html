@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-sm-7 col-md-8">
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Tên</th>
+        <th>Loại</th>
+        <th *ngIf="userActive"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let post of posts let i = index">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{post.name}}</td>
+        <td>{{post.price}}K</td>
+        <td *ngIf="auth.canActivate()"><a href="#" class="btn-link" (click)="deleteDish($event, post, i)">Xóa</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-sm-5 col-md-4">
+    <div>
+      <label>Tổng: </label> <b>{{totalDishes}}</b>Suất/ <b>{{totalPrice}}</b>K
+    </div>
+    <div>
+      <table class="table table-bordered">
+        <thead>
+          <th>Loại</th>
+          <th>Số Lượng</th>
+          <th>Tổng tiền</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dish of dishes let i = index">
+            <td>{{dish.type}}K</td>
+            <td>{{dish.number}}</td>
+            <td>{{dish.price}}K</td>
+          </tr>
+          <tr>
+            <th scope="row"colspan="2">Tổng</th>
+            <td><b>{{totalPrice}}K</b></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

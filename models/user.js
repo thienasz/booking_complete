@@ -12,37 +12,21 @@ module.exports = function(sequelize, DataTypes) {
         primaryKey:    true,
         autoIncrement: true
     },
-    social_id:{
-        type:      Sequelize.STRING(64),
-        field:     'social_id',
-        allowNull: true
-    },
-    name:{
-        type:      Sequelize.STRING(64),
-        field:     'name',
-        allowNull: false
-    },
-    username:{
-        type:      Sequelize.STRING(64),
-        field:     'username',
-        allowNull: false
-    },
     email:{
         type:         Sequelize.STRING(64),
         field:        'email',
-        allowNull:    true,
-        defaultValue: null
+        allowNull: true,
+        defualtValue: null
+    },
+    username:{
+        type:         Sequelize.STRING(64),
+        field:        'username',
+        allowNull:    false
     },
     password:{
         type:         Sequelize.STRING(64),
         field:        'password',
-        allowNull:    true,
-        defaultValue: null
-    },
-    profile_picture:{
-        type: Sequelize.STRING(256),
-        field: 'profile_picture',
-        allowNull: false
+        allowNull:    false
     },
     provider:{
         type: Sequelize.STRING(64),
@@ -52,24 +36,6 @@ module.exports = function(sequelize, DataTypes) {
     last_active:{
         type: Sequelize.INTEGER(11),
         field: 'last_active',
-        allowNull: true,
-        defualtValue: null
-    },
-    access_token:{
-        type: Sequelize.STRING(256),
-        field: 'access_token',
-        allowNull: true,
-        defualtValue: null
-    },
-    access_token_secret:{
-        type: Sequelize.STRING(256),
-        field: 'access_token_secret',
-        allowNull: true,
-        defualtValue: null
-    },
-    refresh_token:{
-        type: Sequelize.STRING(128),
-        field: 'refresh_token',
         allowNull: true,
         defualtValue: null
     }

@@ -14,10 +14,9 @@ var authenticationHelpers = require('../authenticationHelpers');
 router.get('/me', authenticationHelpers.isAuth, function(req, res, next) {
   res.json({
     "me": {
-      "name": req.session.passport.user.name,
       "username": req.session.passport.user.username,
-      "profile_picture": req.session.passport.user.profile_picture,
-      "last_active": req.session.passport.user.last_active 
+      "email": req.session.passport.user.email,
+      "last_active": req.session.passport.user.last_active
     } 
   });
 });
@@ -25,6 +24,8 @@ router.get('/me', authenticationHelpers.isAuth, function(req, res, next) {
 // /users/register
 var registerUserController = require('../../controllers').registerUser;
 router.post('/register', authenticationHelpers.isNotAuthOrRedirect, function(request, response, next) {
+  console.log(request.body);
+  console.log(123);
   registerUserController(request.body).then(function(user) {
     response.json(user);
   }).catch(function(error) {

@@ -11,8 +11,6 @@ import { UserService } from '../shared/services/user/user.service';
  * See https://github.com/angular/angular/issues/6895#issuecomment-221765955
  */
 
-// import { UsernameEmailValidator } from '../shared/services/user/username-email-validator';
-
 @Component({
   selector: 'register',
   templateUrl: './register.component.html',
@@ -22,7 +20,6 @@ import { UserService } from '../shared/services/user/user.service';
 export class RegisterComponent implements OnInit {
   title = 'Register';
   loginLink = '/login';
-  githubLink = 'https://github.com/domfarolino/angular2-login-seed';
 
   form: FormGroup;
 
@@ -39,7 +36,7 @@ export class RegisterComponent implements OnInit {
    */
   errorDiagnostic: string;
 
-  constructor(private _userService: UserService, private _router: Router, private formBuilder: FormBuilder) {
+  constructor(private userService: UserService, private router: Router, private formBuilder: FormBuilder) {
 
   }
 
@@ -52,20 +49,14 @@ export class RegisterComponent implements OnInit {
      * Initialize form
      */
     this.form = this.formBuilder.group({
-      name: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(64)])],
       username: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(64)])],
-      email: ['', Validators.compose([Validators.required, Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(32)])]
     });
 
   }
 
   login() {
-    this._router.navigateByUrl(this.loginLink);
-  }
-
-  repository() {
-    window.location.href = this.githubLink;
+    this.router.navigateByUrl(this.loginLink);
   }
 
   onSubmit() {
@@ -76,13 +67,14 @@ export class RegisterComponent implements OnInit {
     this.submitted = true;
     this.errorDiagnostic = null;
 
-    this._userService.register(this.form.value).subscribe(data => {
-      this._router.navigateByUrl('/login');
-    },
-    error => {
-      this.submitted = false;
-      this.errorDiagnostic = USER_STATUS_CODES[error.status] || USER_STATUS_CODES[500];
-    });
+    this.userService.register(this.form.value).subscribe(
+        data => {
+          this.router.navigateByUrl('/login');
+        },
+        error => {
+          this.submitted = false;
+          this.errorDiagnostic = USER_STATUS_CODES[error.status] || USER_STATUS_CODES[500];
+        });
   }
 
 }

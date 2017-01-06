@@ -27,7 +27,7 @@ module.exports = Promise.method(function userExists(userAttributes) {
    * does in fact exist. These are the only attributes
    * we consider unique right now
    */
-  return User.findOne({where: Sequelize.and({provider: 'local'}, Sequelize.or({username: userAttributes.username}, {email: userAttributes.email}))}).then(function(user) {
+  return User.findOne({where: Sequelize.and({provider: 'local', username: userAttributes.username})}).then(function(user) {
     console.log(user);
     if (!user) return false;
     return true;

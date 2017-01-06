@@ -3,18 +3,20 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { HomeRootComponent } from './home-root/home-root.component';
 
-import { HomeRootRoutes } from './home-root/home-root.routes';
-import { HomeRootComponentGuard } from './home-root/home-root.guard';
 import { UnauthenticatedGuard } from './unauthenticated.guard';
+import {BookingAddComponent} from "./booking/add/booking.add.component";
+import {BookingListComponent} from "./booking/list/booking.list.component";
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo: '/dashboard',
-  //   pathMatch: 'full'
-  // },
+  {
+    path: '',
+    component: BookingAddComponent
+  },
+  {
+    path: 'dashboard',
+    component: BookingListComponent
+  },
   {
     path: 'login',
     component: LoginComponent,
@@ -24,14 +26,15 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent,
     canActivate: [UnauthenticatedGuard]
-  },
-  ...HomeRootRoutes
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    useHash: true
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
 
-export const routedComponents = [HomeRootComponent, LoginComponent, RegisterComponent];
+export const routedComponents = [BookingAddComponent, LoginComponent, RegisterComponent];

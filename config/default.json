@@ -3,23 +3,6 @@
     "host": "localhost",
     "user": "root",
     "pass": "",
-    "name": "tests"
-  },
-
-  "oauthCredentials": {
-    "twitter": {
-        "id": "<>",
-        "secret": "<>"
-    },
-    "google": {
-        "id": "<>",
-        "secret": "<>"
-    }
-  },
-
-  "oauthCallbacks": {
-    "googleCallbackUrl"  : "http://localhost:5000/callback/google",
-    "twitterCallbackUrl" : "http://localhost:5000/callback/twitter",
-    "facebookCallbackUrl": "http://localhost:5000/callback/facebook"
+    "name": "seed"
   }
 }

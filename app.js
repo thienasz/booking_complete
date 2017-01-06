@@ -26,20 +26,18 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session({ secret: 'my_precious' }));
+app.use(session({ secret: 'my_precious', resave : true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cookieParser());
 
+app.use(express.static(__dirname + '/dist'));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
 
 /**
  * PWA Static Exceptions
  */
 app.use('/manifest.json', express.static(__dirname + '/manifest.json'));
-app.use('/192.png', express.static(__dirname + '/192.png'));
-app.use('/144.png', express.static(__dirname + '/144.png'));
-app.use('/96.png', express.static(__dirname + '/96.png'));
 
 /**
  * Link main route module to app

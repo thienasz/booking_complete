@@ -1,80 +1,20 @@
 .content {
-  width:100%;
-  height:100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background-size: cover;
-  background-position: 50% 90% !important;
-  background-repeat: no-repeat;
-  background-image: url(assets/img/nyc.jpg);
+    width:100%;
+    height:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
 }
-
-md-card {
-  text-align:center;
-  animation: fadein 1s;
-  -o-animation: fadein 1s; /* Opera */
-  -moz-animation: fadein 1s; /* Firefox */
-  -webkit-animation: fadein 1s; /* Safari and Chrome */
-
-  width:85%;
-  max-width:350px;
-}
-
-md-input {
-    display:block;
-}
-
-md-spinner {
-    width:25px;
-    height:25px;
-    margin:20px auto 0 auto;
-}
-
-button {
-  display:block;
-  width:100%;
-  margin:5px;
-}
-
-.error {
-  color:red;
-  font-weight: bold;
-}
-
-@keyframes fadein {
-    from {
-        opacity:0;
-    }
-    to {
-        opacity:1;
-    }
-}
-
-@-webkit-keyframes fadein { /* Safari and Chrome */
-    from {
-        opacity:0;
-    }
-    to {
-        opacity:1;
-    }
-}
-
-@-moz-keyframes fadein { /* Firefox */
-    from {
-        opacity:0;
-    }
-    to {
-        opacity:1;
-    }
-}
-
-@-o-keyframes fadein { /* Opera */
-    from {
-        opacity:0;
-    }
-    to {
-        opacity: 1;
-    }
+.login {
+    min-width: 350px;
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+    transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: box-shadow;
+    display: block;
+    position: relative;
+    padding: 24px;
+    border-radius: 2px;
+    background: white;
+    color: black;
 }

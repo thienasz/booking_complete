@@ -212,7 +212,7 @@ The goal is to keep as flat of a directory structure as possible for all of the 
 │   │   │   ├─index.ts
 │   │   ├─app.component.html
 │   │   ├─dashboard
-│   │   │   ├─dashboard.component.ts
+│   │   │   ├─booking.list.component.ts
 │   │   │   ├─dashboard.component.js.map
 │   │   │   ├─dashboard.component.js
 │   │   │   ├─dashboard.component.html

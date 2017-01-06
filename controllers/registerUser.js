@@ -15,7 +15,6 @@ module.exports = Promise.method(function registerUser(userAttributes) {
    * Set some defaults
    */
   userAttributes.provider = 'local';
-  userAttributes.profile_picture = 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg';
   console.log(userAttributes.password);
   userAttributes.password = User.generateHash(userAttributes.password);
   
