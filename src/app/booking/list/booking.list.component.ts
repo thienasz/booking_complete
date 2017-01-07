@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UnauthenticatedGuard} from "../../unauthenticated.guard";
 import {BookingService} from "../../shared/services/booking/booking.service";
 import {Booking} from "../../shared/services/booking/Booking";
+import {AuthenticatedGuard} from "../../authenticated.guard";
 
 @Component({
   selector: 'app-list-booking',
@@ -16,14 +17,14 @@ export class BookingListComponent implements OnInit {
   totalPrice = 0;
   userActive = false;
 
-  constructor(private bookingService: BookingService, auth: UnauthenticatedGuard) {
-    this.bookingService.getPosts().subscribe(posts => {
+  constructor(private bookingService: BookingService,private auth: AuthenticatedGuard) {
+    this.bookingService.getPosts().subscribe(rs => {
       var dishes = [];
       var total = {
         dishes: 0,
         price: 0
       };
-      posts.forEach(function (value, index) {
+      rs.forEach(function (value, index) {
         total.dishes++;
         total.price += value.price;
         if (value.price in dishes) {
@@ -37,10 +38,10 @@ export class BookingListComponent implements OnInit {
           }
         }
       });
-
+        rs.log
       this.dishes = dishes.filter(function(){return true;});
       console.log(this.dishes);
-      this.posts = posts;
+      this.posts = rs;
       this.totalDishes = total.dishes;
       this.totalPrice = total.price;
       // this.totalDishes = hist;

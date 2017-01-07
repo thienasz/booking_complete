@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {UnauthenticatedGuard} from "./unauthenticated.guard";
 import {UserService} from "./shared/services/user/user.service";
 import {Router} from "@angular/router";
+import {AuthenticatedGuard} from "./authenticated.guard";
 
 @Component({
   selector: 'main-app',
@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 })
 
 export class AppComponent {
-  constructor(private auth: UnauthenticatedGuard, private userService: UserService, private router: Router){};
+  constructor(private auth: AuthenticatedGuard, private userService: UserService, private router: Router){};
 
   logout() {
     console.log(123);

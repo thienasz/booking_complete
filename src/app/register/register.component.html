@@ -1,6 +1,6 @@
 <div class="content">
-  <div class="login center-block">
-    <h1>{{title}}</h1>
+  <div class="register center-block">
+    <h2>{{title}}</h2>
     <form *ngIf="!submitted" [formGroup]="form" (ngSubmit)="onSubmit()" #registerForm="ngForm">
       <div class="form-group">
         <label for="username">Email</label>
@@ -17,7 +17,7 @@
     <p class="error" *ngIf="errorDiagnostic">{{errorDiagnostic}}</p>
     <hr>
     <div class="text-xs-center">
-      <a class="link" (click)="login()">Login</a>
+      <button class="btn btn-block btn-danger" (click)="login()">Login</button>
     </div>
   </div>
 </div>

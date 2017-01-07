@@ -14,6 +14,7 @@ var authenticationHelpers = require('../authenticationHelpers');
 router.get('/me', authenticationHelpers.isAuth, function(req, res, next) {
   res.json({
     "me": {
+      "id": req.session.passport.user.id,
       "username": req.session.passport.user.username,
       "email": req.session.passport.user.email,
       "last_active": req.session.passport.user.last_active

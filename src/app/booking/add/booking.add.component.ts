@@ -18,6 +18,7 @@ export class BookingAddComponent implements OnInit {
 
   constructor(private bookingService: BookingService, private router: Router, private userService: UserService) {
     this.booking = {
+        "id" : 0,
       "userid" : 0,
       "name" : "",
       "price" : 30
@@ -31,6 +32,16 @@ export class BookingAddComponent implements OnInit {
             // Log errors if any
             console.log(err);
         });
+      this.userService.getMe()
+          .subscribe(
+              rs => {
+                  console.log(rs);
+                  this.booking.userid = rs.id;
+              },
+              err => {
+                  // Log errors if any
+                  console.log(err);
+              });
   }
 
   ngOnInit() {

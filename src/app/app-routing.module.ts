@@ -15,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: BookingListComponent
+    component: BookingListComponent,
   },
   {
     path: 'login',
@@ -30,11 +30,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    useHash: true
-  })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
 
-export const routedComponents = [BookingAddComponent, LoginComponent, RegisterComponent];
+export const routedComponents = [LoginComponent, RegisterComponent];

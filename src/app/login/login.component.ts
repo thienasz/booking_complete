@@ -18,7 +18,6 @@ import 'rxjs/add/observable/interval';
 
 export class LoginComponent implements OnInit, OnDestroy {
   title = 'Login';
-  registerLink = '/register';
 
   authenticatedObs: Observable<boolean>;
   userServiceSub: Subscription;
@@ -39,7 +38,7 @@ export class LoginComponent implements OnInit, OnDestroy {
    */
   errorDiagnostic: string;
 
-  constructor(private userService: UserService, private router: Router, private formBuilder: FormBuilder, @Inject('apiBase') private _apiBase: string) {
+  constructor(private _userService: UserService, private _router: Router, private formBuilder: FormBuilder, @Inject('apiBase') private _apiBase: string) {
 
   }
 
@@ -54,13 +53,13 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   authenticated(): Observable<boolean> {
     if (this.authenticatedObs) return this.authenticatedObs;
-    this.authenticatedObs = this.userService.authenticated()
+    this.authenticatedObs = this._userService.authenticated()
       .map(data => {return data.authenticated});
     return this.authenticatedObs;
   }
 
   register() {
-    this.router.navigate(['/register']);
+    this._router.navigate(['/register']);
   }
 
   onSubmit() {
@@ -69,9 +68,9 @@ export class LoginComponent implements OnInit, OnDestroy {
      */
     this.submitted = true;
     this.errorDiagnostic = null;
-    console.log(this.form.value);
-    this.userService.login(this.form.value).subscribe(data => {
-      this.router.navigate(['/']);
+
+    this._userService.login(this.form.value).subscribe(data => {
+      this._router.navigate(['/']);
     },
     error => {
       this.submitted = false;

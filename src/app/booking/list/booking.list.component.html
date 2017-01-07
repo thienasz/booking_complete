@@ -14,7 +14,7 @@
         <th scope="row">{{i + 1}}</th>
         <td>{{post.name}}</td>
         <td>{{post.price}}K</td>
-        <td *ngIf="auth.canActivate()"><a href="#" class="btn-link" (click)="deleteDish($event, post, i)">Xóa</a></td>
+        <td *ngIf="(auth.canActivate())"><a href="#" class="btn-link" (click)="deleteDish($event, post, i)">Xóa</a></td>
       </tr>
       </tbody>
     </table>

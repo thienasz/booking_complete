@@ -16,7 +16,7 @@ router.route('/')
         var name = req.body.name;
         var price = req.body.price;
 
-        var booking = Booking.build({ name: name, price: price});
+        var booking = Booking.build({ userid: userid, name: name, price: price});
 
         booking.add(function(success){
                 res.json({ message: 'Booking created!' });
